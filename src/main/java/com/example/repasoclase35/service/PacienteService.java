@@ -17,29 +17,24 @@ public class PacienteService {
 
         this.pacienteRepository = pacienteRepository;
     }
-
-    public List<Paciente> buscarTodosPaciente(){
-
-        return pacienteRepository.findAll();
-    }
-
-    public Optional<Paciente> buscarXEmail (String email){
-
-        return pacienteRepository.findByEmail(email);
-    }
-
     public  Paciente guardarPaciente (Paciente paciente){
-
         return pacienteRepository.save(paciente);
     }
     public Paciente actualizarPaciente(Paciente paciente){
-
         return pacienteRepository.save(paciente);
     }
-
+    public List<Paciente> buscarTodosPaciente(){
+        return pacienteRepository.findAll();
+    }
     public Optional<Paciente> buscarPaciente(Long id){
-
         return pacienteRepository.findById(id);
+    }
+    public void eliminarPaciente (Long id){
+        pacienteRepository.deleteById(id);
+    }
+
+    public Optional<Paciente> buscarXEmail (String email){
+        return pacienteRepository.findByEmail(email);
     }
 
 

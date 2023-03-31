@@ -2,6 +2,8 @@ package com.example.repasoclase35.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="pacientes")
@@ -17,33 +19,18 @@ public class Paciente {
     private String documento;
     @Column
     private LocalDate fechaIngreso;
+
     @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name="domicilio_id", referencedColumnName = "id")
     private Domicilio domicilio;
+
+    @OneToMany (mappedBy = "paciente")
+    private Set<Turno> turnos = new HashSet<>();
+
     @Column
     private String email;
 
-    public Paciente() {
-    }
 
-    public Paciente(Long id, String apellido, String nombre, String documento, LocalDate fechaIngreso, Domicilio domicilio, String email) {
-        this.id = id;
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.documento = documento;
-        this.fechaIngreso = fechaIngreso;
-        this.domicilio = domicilio;
-        this.email = email;
-    }
-
-    public Paciente(String apellido, String nombre, String documento, LocalDate fechaIngreso, Domicilio domicilio, String email) {
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.documento = documento;
-        this.fechaIngreso = fechaIngreso;
-        this.domicilio = domicilio;
-        this.email = email;
-    }
 
     public Long getId() {
         return id;

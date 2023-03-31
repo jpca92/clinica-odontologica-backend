@@ -1,6 +1,8 @@
 package com.example.repasoclase35.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="odontologos")
@@ -15,21 +17,9 @@ public class Odontologo {
     @Column
     private String matricula;
 
-    public Odontologo() {
-    }
+    @OneToMany (mappedBy = "odontologo")
+    private Set<Turno> turnos = new HashSet<>();
 
-    public Odontologo(Long id, String apellido, String nombre, String matricula) {
-        this.id = id;
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.matricula = matricula;
-    }
-
-    public Odontologo(String apellido, String nombre, String matricula) {
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.matricula = matricula;
-    }
 
     public Long getId() {
         return id;
