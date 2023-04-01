@@ -30,8 +30,6 @@ public class Paciente {
     @Column
     private String email;
 
-
-
     public Long getId() {
         return id;
     }
