@@ -24,11 +24,24 @@ public class Paciente {
     @JoinColumn(name="domicilio_id", referencedColumnName = "id")
     private Domicilio domicilio;
 
-    @OneToMany (mappedBy = "paciente")
+    @OneToMany (mappedBy = "paciente", fetch = FetchType.LAZY)
     private Set<Turno> turnos = new HashSet<>();
 
     @Column
     private String email;
+
+
+    public Paciente(String apellido, String nombre, String documento, LocalDate fechaIngreso, Domicilio domicilio, String email) {
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.documento = documento;
+        this.fechaIngreso = fechaIngreso;
+        this.domicilio = domicilio;
+        this.email = email;
+    }
+
+    public Paciente() {
+    }
 
     public Long getId() {
         return id;
