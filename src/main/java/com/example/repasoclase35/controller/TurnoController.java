@@ -30,13 +30,13 @@ public class TurnoController {
     @PostMapping
     public ResponseEntity<TurnoDTO> registrarTurno(@RequestBody TurnoDTO turno){
         ResponseEntity<TurnoDTO> respuesta;
-        Optional<Paciente> pacienteBuscado = pacienteService.buscarPaciente(turno.getPaciente_id());
-        Optional<Odontologo> odontologoBuscado = odontologoService.buscarOdontologo(turno.getOdontologo_id());
+        Optional<Paciente> pacienteBuscado=pacienteService.buscarPaciente(turno.getPaciente_id());
+        Optional<Odontologo> odontologoBuscado=odontologoService.buscarOdontologo(turno.getOdontologo_id());
         if (pacienteBuscado.isPresent() && odontologoBuscado.isPresent()){
-            respuesta= ResponseEntity.ok(turnoService.guardarTurno(turno));
+            respuesta=ResponseEntity.ok(turnoService.guardarTurno(turno));
         }
         else{
-            respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            respuesta=ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         return respuesta;
     }

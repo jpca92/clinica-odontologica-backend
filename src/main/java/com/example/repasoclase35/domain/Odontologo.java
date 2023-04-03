@@ -1,5 +1,7 @@
 package com.example.repasoclase35.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,9 +19,26 @@ public class Odontologo {
     @Column
     private String matricula;
 
-    @OneToMany (mappedBy = "odontologo")
+    @OneToMany (mappedBy = "odontologo", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Turno> turnos = new HashSet<>();
 
+
+    public Odontologo(Long id, String apellido, String nombre, String matricula) {
+        this.id = id;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.matricula = matricula;
+    }
+
+    public Odontologo(String apellido, String nombre, String matricula) {
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.matricula = matricula;
+    }
+
+    public Odontologo() {
+    }
 
     public Long getId() {
         return id;

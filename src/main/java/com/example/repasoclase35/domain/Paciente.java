@@ -1,5 +1,7 @@
 package com.example.repasoclase35.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -25,6 +27,7 @@ public class Paciente {
     private Domicilio domicilio;
 
     @OneToMany (mappedBy = "paciente", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Turno> turnos = new HashSet<>();
 
     @Column

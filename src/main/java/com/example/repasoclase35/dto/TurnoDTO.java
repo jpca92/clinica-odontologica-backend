@@ -10,6 +10,26 @@ public class TurnoDTO {
     private String nombre_odontologo;
     private String nombre_paciente;
 
+    public TurnoDTO(Long id, Long odontologo_id, Long paciente_id, LocalDate fecha, String nombre_odontologo, String nombre_paciente) {
+        this.id = id;
+        this.odontologo_id = odontologo_id;
+        this.paciente_id = paciente_id;
+        this.fecha = fecha;
+        this.nombre_odontologo = nombre_odontologo;
+        this.nombre_paciente = nombre_paciente;
+    }
+
+    public TurnoDTO(Long odontologo_id, Long paciente_id, LocalDate fecha, String nombre_odontologo, String nombre_paciente) {
+        this.odontologo_id = odontologo_id;
+        this.paciente_id = paciente_id;
+        this.fecha = fecha;
+        this.nombre_odontologo = nombre_odontologo;
+        this.nombre_paciente = nombre_paciente;
+    }
+
+    public TurnoDTO() {
+    }
+
     public Long getId() {
         return id;
     }
