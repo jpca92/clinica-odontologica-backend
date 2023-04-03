@@ -12,7 +12,7 @@ window.addEventListener('load', function () {
       .then(response => response.json())
       .then(data => {
       //recorremos la colección de peliculas del JSON
-         for(odontologos of data){
+         for(odontologo of data){
             //por cada pelicula armaremos una fila de la tabla
             //cada fila tendrá un id que luego nos permitirá borrar la fila si eliminamos la pelicula
             var table = document.getElementById("odontologoTable");
