@@ -22,9 +22,14 @@ public class CargadoraDeDatos implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         BCryptPasswordEncoder cifrador= new BCryptPasswordEncoder();
         String passACifrar="1234";
+        String passACifrar2="1234";
         String passCifrada=cifrador.encode(passACifrar);
+        String passCifrada2=cifrador.encode(passACifrar2);
         Usuario usuarioAInsertar= new Usuario("Rodolfo","Baspineiro",
                 "rodo@gmail.com",passCifrada, UsuarioRol.ROLE_USER);
+        Usuario usuarioAInsertar2= new Usuario("RodoAdmin","Baspi",
+                "rodoAdmin@gmail.com",passCifrada, UsuarioRol.ROLE_ADMIN);
         usuarioRepository.save(usuarioAInsertar);
+        usuarioRepository.save(usuarioAInsertar2);
     }
 }
