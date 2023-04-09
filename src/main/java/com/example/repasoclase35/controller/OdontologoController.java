@@ -3,6 +3,7 @@ package com.example.repasoclase35.controller;
 import com.example.repasoclase35.domain.Odontologo;
 import com.example.repasoclase35.domain.Paciente;
 import com.example.repasoclase35.dto.TurnoDTO;
+import com.example.repasoclase35.exceptions.ResourceNotFoundException;
 import com.example.repasoclase35.service.OdontologoService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,15 +48,15 @@ public class OdontologoController {
         }
     }
     @DeleteMapping("/{id}")
-    public  ResponseEntity<String> eliminarOdontologo(@PathVariable Long id){
+    public  ResponseEntity<String> eliminarOdontologo(@PathVariable Long id) throws ResourceNotFoundException {
         Optional<Odontologo> odontologoBuscado = odontologoService.buscarOdontologo(id);
         if (odontologoBuscado.isPresent()){
             odontologoService.borrarOdontologo(id);
-            return ResponseEntity.ok("Se elimino el turno con id: "+ id);
+            return ResponseEntity.ok("Se elimino el odontologo con id: "+ id);
         }
         else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se logró " +
-                    "eliminar" +"el turno con id: "+ id + "dado que el mismo no " +
+                    "eliminar" +"el odontologo con id: "+ id + "dado que el mismo no " +
                     "existe en la base de datos");
         }
     }

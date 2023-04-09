@@ -1,6 +1,8 @@
 package com.example.repasoclase35.service;
 
 import com.example.repasoclase35.domain.Odontologo;
+import com.example.repasoclase35.domain.Paciente;
+import com.example.repasoclase35.exceptions.ResourceNotFoundException;
 import com.example.repasoclase35.repository.OdontologoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,13 @@ public class OdontologoService {
     public Optional<Odontologo> buscarOdontologo(Long id){
         return odontologoRepository.findById(id);
     }
-    public void borrarOdontologo(Long id){
-        odontologoRepository.deleteById(id);
+    public void borrarOdontologo(Long id) throws ResourceNotFoundException{
+        Optional<Odontologo> odontologoBuscado = odontologoRepository.findById(id);
+        if (odontologoBuscado.isPresent()){
+            odontologoRepository.deleteById(id);
+        }
+        else{
+            throw new ResourceNotFoundException("Error. No existe el odontologo con id: "+id);
+        }
     }
 }

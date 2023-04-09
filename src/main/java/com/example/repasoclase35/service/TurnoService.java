@@ -4,6 +4,8 @@ import com.example.repasoclase35.domain.Odontologo;
 import com.example.repasoclase35.domain.Paciente;
 import com.example.repasoclase35.domain.Turno;
 import com.example.repasoclase35.dto.TurnoDTO;
+import com.example.repasoclase35.exceptions.BadRequestException;
+import com.example.repasoclase35.exceptions.ResourceNotFoundException;
 import com.example.repasoclase35.repository.TurnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +23,11 @@ public class TurnoService {
         this.turnoRepository = turnoRepository;
     }
 
-    public TurnoDTO guardarTurno(TurnoDTO turno){
-        return convertirTurnoaTurnoDTO(
-                turnoRepository.save(convertirTurnoDTOaTurno(turno)));
+    public TurnoDTO guardarTurno(TurnoDTO turno) throws BadRequestException {
+        if (turno.getOdontologo_id() ==null || turno.getPaciente_id()==null){
+            throw new BadRequestException("Error. El turno debe tener odontologo y paciente");
+        }
+        return convertirTurnoaTurnoDTO(turnoRepository.save(convertirTurnoDTOaTurno(turno)));
     }
 
     public TurnoDTO actualizarTurno(TurnoDTO turno){
@@ -48,8 +52,14 @@ public class TurnoService {
             return Optional.empty();
         }
     }
-    public void eliminarTurno (Long id){
-        turnoRepository.deleteById(id);
+    public void eliminarTurno (Long id) throws ResourceNotFoundException {
+        Optional<Turno> turnoBuscado = turnoRepository.findById(id);
+        if (turnoBuscado.isPresent()){
+            turnoRepository.deleteById(id);
+        }
+        else {
+            throw new ResourceNotFoundException("Error. No existe el paciente con id: " + id);
+        }
     }
 
     private Turno convertirTurnoDTOaTurno(TurnoDTO turnoDTO){

@@ -3,6 +3,8 @@ package com.example.repasoclase35.controller;
 import com.example.repasoclase35.domain.Odontologo;
 import com.example.repasoclase35.domain.Paciente;
 import com.example.repasoclase35.dto.TurnoDTO;
+import com.example.repasoclase35.exceptions.BadRequestException;
+import com.example.repasoclase35.exceptions.ResourceNotFoundException;
 import com.example.repasoclase35.service.OdontologoService;
 import com.example.repasoclase35.service.PacienteService;
 import com.example.repasoclase35.service.TurnoService;
@@ -30,7 +32,7 @@ public class TurnoController {
     }
 
     @PostMapping
-    public ResponseEntity<TurnoDTO> registrarTurno(@RequestBody TurnoDTO turno){
+    public ResponseEntity<TurnoDTO> registrarTurno (@RequestBody TurnoDTO turno) throws BadRequestException {
         ResponseEntity<TurnoDTO> respuesta;
         Optional<Paciente> pacienteBuscado=pacienteService.buscarPaciente(turno.getPaciente_id());
         Optional<Odontologo> odontologoBuscado=odontologoService.buscarOdontologo(turno.getOdontologo_id());
@@ -44,7 +46,7 @@ public class TurnoController {
     }
 
     @PutMapping
-    public ResponseEntity<TurnoDTO> actualizarTurno(@RequestBody TurnoDTO turno){
+    public ResponseEntity<TurnoDTO> actualizarTurno(@RequestBody TurnoDTO turno) throws BadRequestException{
         ResponseEntity<TurnoDTO> respuesta;
         Optional<Paciente> pacienteBuscado=pacienteService.buscarPaciente(turno.getPaciente_id());
         Optional<Odontologo> odontologoBuscado=odontologoService.buscarOdontologo(turno.getOdontologo_id());
@@ -74,7 +76,7 @@ public class TurnoController {
     }
 
     @DeleteMapping ("/{id}")
-    public ResponseEntity<String> eliminarTurno(@PathVariable Long id){
+    public ResponseEntity<String> eliminarTurno(@PathVariable Long id) throws ResourceNotFoundException {
         Optional<TurnoDTO> turnoBuscado = turnoService.buscarTurno(id);
         if (turnoBuscado.isPresent()){
             turnoService.eliminarTurno(id);

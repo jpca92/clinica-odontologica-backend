@@ -4,6 +4,7 @@ import com.example.repasoclase35.domain.Domicilio;
 import com.example.repasoclase35.domain.Odontologo;
 import com.example.repasoclase35.domain.Paciente;
 import com.example.repasoclase35.dto.TurnoDTO;
+import com.example.repasoclase35.exceptions.BadRequestException;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,7 @@ class TurnoServiceTest {
     private String nombre_paciente;*/
     @Test
     @Order(1)
-    public void guardarTurnoDTO_Test(){
+    public void guardarTurnoDTO_Test() throws BadRequestException {
         Domicilio domicilio1 = new Domicilio("calle a", "23","salta","prov salta");
         Paciente pacienteAGuardar = new Paciente("Baspineiro", "Rodo", "12233",
                 LocalDate.of(2023,03,29), domicilio1, "rodo@gmail.com");

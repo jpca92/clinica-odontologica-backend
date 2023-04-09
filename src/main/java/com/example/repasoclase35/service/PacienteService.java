@@ -1,10 +1,12 @@
 package com.example.repasoclase35.service;
 
 import com.example.repasoclase35.domain.Paciente;
+import com.example.repasoclase35.exceptions.ResourceNotFoundException;
 import com.example.repasoclase35.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,8 +31,14 @@ public class PacienteService {
     public Optional<Paciente> buscarPaciente(Long id){
         return pacienteRepository.findById(id);
     }
-    public void eliminarPaciente (Long id){
-        pacienteRepository.deleteById(id);
+    public void eliminarPaciente (Long id) throws ResourceNotFoundException {
+        Optional<Paciente> pacienteBuscado = pacienteRepository.findById(id);
+        if (pacienteBuscado.isPresent()){
+            pacienteRepository.deleteById(id);
+        }
+        else{
+            throw new ResourceNotFoundException("Error. No existe el paciente con id: "+id);
+        }
     }
 
     public Optional<Paciente> buscarXEmail (String email){

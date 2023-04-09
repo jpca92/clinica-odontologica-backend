@@ -2,6 +2,7 @@ package com.example.repasoclase35.controller;
 
 import com.example.repasoclase35.domain.Odontologo;
 import com.example.repasoclase35.domain.Paciente;
+import com.example.repasoclase35.exceptions.ResourceNotFoundException;
 import com.example.repasoclase35.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,7 +45,7 @@ public class PacienteController {
     }
 
     @DeleteMapping("/{id}")
-    public  ResponseEntity<String> eliminarPaciente(@PathVariable Long id){
+    public  ResponseEntity<String> eliminarPaciente(@PathVariable Long id) throws ResourceNotFoundException {
         Optional<Paciente> pacienteBuscado = pacienteService.buscarPaciente(id);
         if (pacienteBuscado.isPresent()){
             pacienteService.eliminarPaciente(id);
