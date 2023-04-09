@@ -52,7 +52,7 @@ window.addEventListener('load', function () {
           fetch(url,settings)
           .then(response => response.json())
           .then(data => {
-              let pelicula = data;
+              let paciente = data;
               document.querySelector('#paciente_id').value = paciente.id;
               document.querySelector('#apellido').value = paciente.titulo;
               document.querySelector('#nombre').value = paciente.categoria;

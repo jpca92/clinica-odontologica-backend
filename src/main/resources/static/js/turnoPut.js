@@ -48,7 +48,7 @@ window.addEventListener('load', function () {
           .then(data => {
               let turno = data;
               document.querySelector('#turno_id').value = turno.id;
-              document.querySelector('#odontologo_id').value = turno.odontologo;
+              document.querySelector('#odontologo_id').value = turno.odontologo_id;
               document.querySelector('#paciente_id').value = turno.paciente_id;
               document.querySelector('#fecha').value = turno.fecha;
               //el formulario por default esta oculto y al editar se habilita

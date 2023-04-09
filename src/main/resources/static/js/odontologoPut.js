@@ -46,11 +46,11 @@ window.addEventListener('load', function () {
           fetch(url,settings)
           .then(response => response.json())
           .then(data => {
-              let pelicula = data;
+              let odontologo = data;
               document.querySelector('#odontologo_id').value = odontologo.id;
-              document.querySelector('#apellido').value = odontologo.titulo;
-              document.querySelector('#nombre').value = odontologo.categoria;
-              document.querySelector('#matricula').value = odontologo.premios;
+              document.querySelector('#apellido').value = odontologo.apellido;
+              document.querySelector('#nombre').value = odontologo.nombre;
+              document.querySelector('#matricula').value = odontologo.matricula;
               //el formulario por default esta oculto y al editar se habilita
               document.querySelector('#div_odontologo_updating').style.display = "block";
           }).catch(error => {

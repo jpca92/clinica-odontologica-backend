@@ -15,7 +15,7 @@ window.addEventListener('load', function () {
          for(turno of data){
             //por cada turno armaremos una fila de la tabla
             //cada fila tendrá un id que luego nos permitirá borrar la fila si eliminamos el turno
-            var table = document.getElementById("odontologoTable");
+            var table = document.getElementById("turnoTable");
             var turnoRow =table.insertRow();
             let tr_id = 'tr_' + turno.id;
             turnoRow.id = tr_id;
@@ -38,14 +38,15 @@ window.addEventListener('load', function () {
                                       turno.id +
                                       '</button>';
 
+            //**********REVISAR
             //armamos cada columna de la fila
             //como primer columna pondremos el boton modificar
             //luego los datos del turno
             //como ultima columna el boton eliminar
             turnoRow.innerHTML = '<td>' + updateButton + '</td>' +
-                    '<td class=\"td_odontologo_id\">' + turno.odontologo_id.toUpperCase() + '</td>' +
-                    '<td class=\"td_paciente_id\">' + turno.paciente_id.toUpperCase() + '</td>' +
-                    '<td class=\"td_fecha\">' + turno.fecha.toUpperCase() + '</td>' +
+                    '<td class=\"td_odontologo_id\">' + turno.odontologo_id + '</td>' +
+                    '<td class=\"td_paciente_id\">' + turno.paciente_id + '</td>' +
+                    '<td class=\"td_fecha\">' + turno.fecha + '</td>' +
                     '<td>' + deleteButton + '</td>';
 
         };

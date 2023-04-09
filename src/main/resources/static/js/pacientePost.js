@@ -15,10 +15,10 @@ window.addEventListener('load', function () {
             fechaIngreso: document.querySelector('#fecha').value,
             email: document.querySelector('#email').value,
             domicilio:{
-            calle: document.querySelector('#calle').value,
-            numero: document.querySelector('#numero').value,
-            localidad: document.querySelector('#localidad').value,
-            provincia: document.querySelector('#provincia').value
+                calle: document.querySelector('#calle').value,
+                numero: document.querySelector('#numero').value,
+                localidad: document.querySelector('#localidad').value,
+                provincia: document.querySelector('#provincia').value
             }
 
 
